@@ -1,35 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const ColorFlipper = () => {
+  const colors = [
+    { name: "Red", hex: "#FF0000" },
+    { name: "Green", hex: "#00FF00" },
+    { name: "Blue", hex: "#0000FF" },
+    { name: "Yellow", hex: "#FFFF00" },
+    { name: "Purple", hex: "#800080" },
+    { name: "Amethyst", hex: "#9966CC" },
+    { name: "Aqua", hex: "#00FFFF" },
+    { name: "Azure", hex: "#007FFF" },
+    { name: "Beige", hex: "#F5F5DC" },
+    { name: "Chocolate", hex: "#D2691E" },
+    { name: "Cyan", hex: "#00FFFF" },
+    { name: "Fuchsia", hex: "#FF00FF" },
+    { name: "Gainsboro", hex: "#DCDCDC" },
+    { name: "Khaki", hex: "#F0E68C" },
+    { name: "Lime", hex: "#00FF00" },
+    { name: "Magenta", hex: "#FF00FF" },
+    { name: "Olive", hex: "#808000" },
+    { name: "Orange", hex: "#FFA500" },
+    { name: "Orchid", hex: "#DA70D6" },
+    { name: "Periwinkle", hex: "#CCCCFF" },
+    { name: "Plum", hex: "#DDA0DD" },
+    { name: "Salmon", hex: "#FA8072" },
+    { name: "Sienna", hex: "#A0522D" },
+    { name: "Thistle", hex: "#D8BFD8" },
+    { name: "Violet", hex: "#EE82EE" },
+  ];
+
+  const [currentColorIndex, setCurrentColorIndex] = useState(0);
+  const [showHex, setShowHex] = useState(false);
+
+  const changeColor = () => {
+    setCurrentColorIndex((prevIndex) => (prevIndex + 1) % colors.length);
+    setShowHex(false);
+  };
+
+  const toggleShowHex = () => {
+    setShowHex(true);
+  };
+
+  const currentColor = colors[currentColorIndex];
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className="color-flipper">
+      <div className="button-container">
+        <button className="show-hex-btn" onClick={toggleShowHex}>
+          Show Hex Code
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <div className="color-display" style={{ backgroundColor: currentColor.hex }}>
+        <p>Background Color: {currentColor.name}</p>
+        <button className="change-color-btn" onClick={changeColor}>
+          Change Color
+        </button>
+        {showHex && <p>{currentColor.hex}</p>}
+      </div>
+    </div>
+  );
+};
 
-export default App
+export default ColorFlipper;
