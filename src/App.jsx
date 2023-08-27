@@ -46,16 +46,16 @@ const ColorFlipper = () => {
 
   return (
     <div className="color-flipper">
-      <div className="button-container">
-        <button className="show-hex-btn" onClick={toggleShowHex}>
-          Show Hex Code
-        </button>
-      </div>
       <div className="color-display" style={{ backgroundColor: currentColor.hex }}>
         <p>Background Color: {currentColor.name}</p>
-        <button className="change-color-btn" onClick={changeColor}>
-          Change Color
-        </button>
+        <div className="button-container">
+          <button className="change-color-btn" onClick={changeColor}>
+            Change Color
+          </button>
+          <button className="show-hex-btn" onClick={toggleShowHex}>
+            Show Hex Code
+          </button>
+        </div>
         {showHex && <p>{currentColor.hex}</p>}
       </div>
     </div>
