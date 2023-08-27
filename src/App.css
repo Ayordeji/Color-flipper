@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .color-flipper {
   display: flex;
   flex-direction: column;
@@ -18,7 +24,6 @@
   text-align: center;
   font-size: 1.5rem;
 }
-
 
 .change-color-btn,
 .show-hex-btn {
